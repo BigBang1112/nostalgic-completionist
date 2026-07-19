@@ -16,5 +16,7 @@ jobs:
       project: NostalgicCompletionist.csproj
       zip-name: NostalgicCompletionist
       zip-output-dir: NostalgicCompletionist
-      zip-ignore: "*.pdb"
+      zip-ignore: |
+        *.pdb
+        *.dbg
       dotnet-version: 10.x.x

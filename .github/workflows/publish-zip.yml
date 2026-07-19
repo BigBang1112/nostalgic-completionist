@@ -1,0 +1,15 @@
+name: Publish
+
+on:
+  push:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: Publish
+    uses: bigbang1112/workflows/.github/workflows/publish-zip.yml@main
+    with:
+      project: NostalgicCompletionist
+      zip-prefix: NostalgicCompletionist
+      dotnet-version: 10.x.x

@@ -202,7 +202,7 @@ Console.WriteLine("Authenticated successfully!");
 var dateId = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
 
 var tracksDirectory = await client.CallAsync<string>("GetTracksDirectory");
-var nostalgicCompletionistDirPath = Path.Combine("_NostalgicCompletionist", dateId);
+var nostalgicCompletionistDirPath = Path.Combine("Challenges", "Downloaded", "_NostalgicCompletionist", dateId);
 var nostalgicCompletionistAbsoluteDirPath = Path.Combine(tracksDirectory, nostalgicCompletionistDirPath);
 Directory.CreateDirectory(nostalgicCompletionistAbsoluteDirPath);
 

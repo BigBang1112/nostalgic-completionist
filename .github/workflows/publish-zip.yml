@@ -14,5 +14,7 @@ jobs:
     uses: bigbang1112/workflows/.github/workflows/publish-zip.yml@main
     with:
       project: NostalgicCompletionist.csproj
-      zip-prefix: NostalgicCompletionist
+      zip-name: NostalgicCompletionist
+      zip-output-dir: NostalgicCompletionist
+      zip-ignore: *.pdb
       dotnet-version: 10.x.x

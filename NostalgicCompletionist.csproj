@@ -1,6 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <AssemblyTitle>Nostalgic Completionist</AssemblyTitle>
+        <Product>Nostalgic Completionist</Product>
+        <Description>Speeds up track completion on old TrackMania games by queueing randomized TMX tracks on a LAN server and auto-skipping once you save a replay.</Description>
+        <Authors>Petr Pivoňka</Authors>
+        <Company>Petr Pivoňka</Company>
+        <Copyright>Copyright © 2026 Petr Pivoňka</Copyright>
+        <Version>1.0.0</Version>
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>

@@ -11,8 +11,8 @@
 
     <ItemGroup>
         <PackageReference Include="GBX.NET" Version="2.4.3" />
-        <PackageReference Include="ManiaAPI.TMX" Version="2.9.3" />
-        <PackageReference Include="ManiaAPI.XmlRpc" Version="2.9.2" />
+        <PackageReference Include="ManiaAPI.TMX" Version="2.9.4" />
+        <PackageReference Include="ManiaAPI.XmlRpc" Version="2.9.3" />
         <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.8.0" />
     </ItemGroup>
 

@@ -96,10 +96,11 @@ for (var i = 0; i <= count / 10; i++)
     {
         Count = 100,
         InHasRecord = completionMode == CompletionMode.Finish ? false : null,
-        AdditionalParameters = completionMode == CompletionMode.AuthorMedal ? new Dictionary<string, string> { ["inauthortimebeaten"] = "0" } : [],
+        InAuthorTimeBeaten = completionMode == CompletionMode.AuthorMedal ? false : null,
         PrimaryType = TrackType.Race, // only Race works properly with old LAN server
         ETag = [TrackStyle.Laps], // multilap in TimeAttack doesnt quite work
         After = lastTrackId,
+        Fields = TrackItemFields.All with { AuthorScore = false }
     });
 
     trackIds.AddRange(tracks.Results
@@ -196,6 +197,8 @@ if (!authResult)
     throw new Exception("Failed to authenticate.");
 }
 
+Console.WriteLine("Authenticated successfully!");
+
 var dateId = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
 
 var tracksDirectory = await client.CallAsync<string>("GetTracksDirectory");
@@ -211,6 +214,8 @@ foreach (var fileName in fileNames)
     File.Copy(localFilePath, remoteFilePath, overwrite: true);
 }
 
+Console.WriteLine($"Copied {fileNames.Count} tracks.");
+
 // Clear current challenge list
 var challengeList = await client.CallAsync<List<object>>("GetChallengeList", int.MaxValue, 0);
 await client.CallAsync("RemoveChallengeList", challengeList.Cast<Dictionary<string, object>>().Select(x => (string)x["FileName"]));
@@ -218,7 +223,7 @@ await client.CallAsync("RemoveChallengeList", challengeList.Cast<Dictionary<stri
 // Add new tracks to challenge list once possible
 while (true)
 {
-    var addedTracks = await client.CallAsync<int>("InsertChallengeList", [fileNames.Select(x => Path.Combine(nostalgicCompletionistDirPath, x))]);
+    var addedTracks = await client.CallAsync<int>("AddChallengeList", [fileNames.Select(x => Path.Combine(nostalgicCompletionistDirPath, x))]);
 
     if (addedTracks > 0)
     {

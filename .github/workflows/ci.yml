@@ -11,3 +11,4 @@ jobs:
     uses: bigbang1112/workflows/.github/workflows/ci.yml@main
     with:
       dotnet-version: 10.x.x
+      enable-coverage: false

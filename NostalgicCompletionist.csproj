@@ -7,7 +7,7 @@
         <Authors>Petr Pivoňka</Authors>
         <Company>Petr Pivoňka</Company>
         <Copyright>Copyright © 2026 Petr Pivoňka</Copyright>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
@@ -23,8 +23,8 @@
 
     <ItemGroup>
         <PackageReference Include="GBX.NET" Version="2.4.3" />
-        <PackageReference Include="ManiaAPI.TMX" Version="2.9.4" />
-        <PackageReference Include="ManiaAPI.XmlRpc" Version="2.9.3" />
+        <PackageReference Include="ManiaAPI.TMX" Version="2.9.5" />
+        <PackageReference Include="ManiaAPI.XmlRpc" Version="2.9.5" />
         <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.8.0" />
     </ItemGroup>
 

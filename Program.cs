@@ -177,6 +177,21 @@ var connectionPipeline = new ResiliencePipelineBuilder()
     })
     .Build();
 
+var replayParsePipeline = new ResiliencePipelineBuilder()
+    .AddRetry(new RetryStrategyOptions
+    {
+        ShouldHandle = new PredicateBuilder().Handle<IOException>(),
+        Delay = TimeSpan.FromMilliseconds(250),
+        MaxRetryAttempts = 20,
+        BackoffType = DelayBackoffType.Constant,
+        OnRetry = args =>
+        {
+            Console.WriteLine($"{Yellow}Replay file is still in use, retrying ({args.AttemptNumber + 1})...{Reset}");
+            return default;
+        }
+    })
+    .Build();
+
 await using var client = await connectionPipeline.ExecuteAsync(async token =>
 {
     try
@@ -253,7 +268,8 @@ fileSystemWatcher.Created += async (sender, e) =>
 {
     try
     {
-        var replay = Gbx.ParseHeaderNode<CGameCtnReplayRecord>(e.FullPath);
+        var replay = await replayParsePipeline.ExecuteAsync(_ =>
+            ValueTask.FromResult(Gbx.ParseHeaderNode<CGameCtnReplayRecord>(e.FullPath)));
 
         var challengeInfo = await client.CallAsync<Dictionary<string, object>>("GetCurrentChallengeInfo");
         var challengeFileName = (string)challengeInfo["FileName"];

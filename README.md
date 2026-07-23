@@ -2,7 +2,7 @@
 
 **Nostalgic Completionist** is a console app that speeds up track completion on old TrackMania games that have limitations which [Randomizer Anywhere](https://github.com/BigBang1112/randomizer-anywhere) cannot solve. It connects to your already-running game over its built-in GBXRemote interface, pulls a batch of random tracks from [TMX](https://tm-exchange.com/), queues them up on a LAN server, and automatically advances to the next track once you save a replay on them.
 
-**For TrackMania Nations ESWC, make sure your game is already opened before running this app, otherwise the app will hang.** This issue will be investigated later.
+**For TrackMania Nations ESWC, make sure your game is already opened before running this app, otherwise the game will just show green background.** This is a bug within the game itself.
 
 **This randomizer does not support Stunts, Platform, and multilap tracks.**
 

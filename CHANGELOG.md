@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0
+## 1.0.1
 
 - Updated ManiaAPI.XmlRpc to fix some connectivity problems
 - Added retries on replay parse checks in case the file is locked

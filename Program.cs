@@ -272,7 +272,9 @@ fileSystemWatcher.Created += async (sender, e) =>
             ValueTask.FromResult(Gbx.ParseHeaderNode<CGameCtnReplayRecord>(e.FullPath)));
 
         var challengeInfo = await client.CallAsync<Dictionary<string, object>>("GetCurrentChallengeInfo");
-        var challengeFileName = (string)challengeInfo["FileName"];
+        // TMN ESWC prefixes FileName with a UTF-8 BOM (U+FEFF) when the path contains
+        // non-ASCII characters (e.g. "»"), which makes the path invalid. Strip it.
+        var challengeFileName = ((string)challengeInfo["FileName"]).TrimStart('\uFEFF');
 
         var map = Gbx.ParseHeaderNode<CGameCtnChallenge>(Path.Combine(tracksDirectory, challengeFileName));
 
@@ -281,7 +283,7 @@ fileSystemWatcher.Created += async (sender, e) =>
             return;
         }
 
-        Console.WriteLine($"Received replay for {Green}{TextFormatter.Deformat(map.MapName)}{Reset} ({Path.GetFileName(e.FullPath)})");
+        Console.WriteLine($"Received replay for {Green}{TextFormatter.Deformat(map.MapName.TrimStart('\uFEFF'))}{Reset} ({Path.GetFileName(e.FullPath)})");
 
         if (replay.Xml is null || !replay.Xml.Contains("validable=\"1\"/>"))
         {

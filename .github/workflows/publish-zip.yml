@@ -11,7 +11,7 @@ permissions:
 jobs:
   ci:
     name: Publish
-    uses: bigbang1112/workflows/.github/workflows/publish-zip.yml@main
+    uses: bigbang1112/workflows/.github/workflows/publish-zip.yml@416c1b77f785cdd541939a86c8adc657793f74c2
     with:
       project: NostalgicCompletionist.csproj
       zip-name: NostalgicCompletionist

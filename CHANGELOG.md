@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+- Fixed issues with BOM in file names
+
 ## 1.0.1
 
 - Updated ManiaAPI.XmlRpc to fix some connectivity problems

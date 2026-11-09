@@ -8,7 +8,7 @@ on:
 jobs:
   ci:
     name: Continuous Integration
-    uses: bigbang1112/workflows/.github/workflows/ci.yml@main
+    uses: bigbang1112/workflows/.github/workflows/dotnet-ci.yml@main
     with:
       dotnet-version: 10.x.x
       enable-coverage: false

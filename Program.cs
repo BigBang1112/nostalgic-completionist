@@ -298,8 +298,8 @@ fileSystemWatcher.Created += async (sender, e) =>
         Directory.CreateDirectory(replayDir);
         File.Copy(e.FullPath, Path.Combine(replayDir, Path.GetFileName(e.FullPath)), overwrite: true);
 
-        // the EventsDuration approach is a HACK but it works and is the simplest way to deal with it
-        if (completionMode == CompletionMode.AuthorMedal && replay.EventsDuration > map.AuthorTime)
+        // EventsDuration is in the body, so it's always null when only the header is parsed - use the header time
+        if (completionMode == CompletionMode.AuthorMedal && (replay.Time is null || replay.Time > map.AuthorTime))
         {
             Console.WriteLine($"{Green}Replay copied, but you didn't beat the author time, continuing...{Reset}");
             return;
